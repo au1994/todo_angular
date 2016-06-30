@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+    <head>
+        <title>Page Title</title>
+        
+        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-cookies.js"></script>
+
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+
+        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script type="text/javascript" src="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css">
+
+        <script type="text/javascript" src="script.js"></script>
+
+        <link rel="stylesheet" type="text/css"
+              href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+
+
+        <style>
+            .btn-circle {
+                width: 49px;
+                height: 49px;
+                text-align: center;
+                padding: 5px 0;
+                font-size: 20px;
+                line-height: 2.00;
+                border-radius: 30px;
+            }
+        </style>
+    </head>
+
+    <body ng-controller="TodoListController">
+
+        <div class="col-md-10 col-md-offset-1">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">TodoApp</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Today</a></li>
+                        <li><a href="#">This Week</a></li>
+                        <li><a href="#">All</a></li> 
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="col-md-8 col-md-offset-2">
+            <div class="container-fluid" >
+                <div class="row" style="margin-top: 1em" ng-repeat="task in tasks">
+                    <div class="checkbox  col-md-1" style = "line-height: 5em" >
+                        <label>
+                            <input class="input" type="checkbox" ng-model="task.is_completed" ng-change="checkCompleted(task, task.id)">
+                        </label>
+                    </div>
+
+                    <div class="panel col-md-11" style = "line-height: 5em; border:1px solid black;" ng-click="updateTask(task.id)">
+                        <div class="row">
+
+                            <div class="col-sm-8 col-md-8" ng-show="task.is_completed"><del>{{task.description}}</del></div>
+                            <div class="col-sm-8 col-md-8" ng-show="!(task.is_completed)">{{task.description}}</div>
+                            <div class="col-sm-2 col-md-2" ng-if="task.time==null"><i class="glyphicon glyphicon-time"></i></div>
+                            <div class="col-sm-2 col-md-2" ng-if="task.time!=null">{{task.time}}</div>
+
+                            <div class="col-sm-2 col-md-2" align="right" ng-click="deleteTask($event, tasks, $index, task.id)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <a type="button" class="btn btn-success btn-circle" style="float: right" href="/update_todo.html" ><i class="glyphicon glyphicon-plus"></i></a>
+            </div>
+        </div>
+        
+    </body>
+
+</html>

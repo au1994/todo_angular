@@ -1,0 +1,12 @@
+{
+  "name": "todoangular",
+  "version": "1.0.0",
+  "description": "my_first_node_app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "abhishek upadhyay",
+  "license": "ISC"
+}
