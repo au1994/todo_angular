@@ -5,20 +5,28 @@
         
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-cookies.js"></script>
+        <script type="text/javascript" src='bower_components/angular-cookies/angular-cookies.js'></script>
 
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 
         <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
+        <script type="text/javascript" src="bower_components/angular-google-plus/dist/angular-google-plus.js"></script>
+
         <script type="text/javascript" src="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css">
 
+        <script type="text/javascript" src="js/main.js"></script>
+
         <script type="text/javascript" src="script.js"></script>
+
+
 
         <link rel="stylesheet" type="text/css"
               href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+        <link rel="manifest" href="manifest.json">
 
 
 
@@ -35,7 +43,7 @@
         </style>
     </head>
 
-    <body ng-controller="TodoListController">
+    <body onload = myfunction() ng-controller="TodoListController">
 
         <div class="col-md-10 col-md-offset-1">
 
@@ -45,15 +53,17 @@
                         <a class="navbar-brand" href="#">TodoApp</a>
                     </div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Today</a></li>
-                        <li><a href="#">This Week</a></li>
-                        <li><a href="#">All</a></li> 
+                        <li class="{{active1}}" ng-model="active1" ng-click="getTasks('today')"><a href="#">Today</a></li>
+                        <li class="{{active2}}" ng-model="active2" ng-click="getTasks('week')"><a href="#">This Week</a></li>
+                        <li class="{{active3}}" ng-model="active3" ng-click="getTasks('all')"><a href="#">All</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+                        <!--li><a id="subscribe" class="btn" href="#">subscribe</a></li-->
+                        <li ng-click="logout()"><a href="#"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
                     </ul>
                 </div>
             </nav>
+            <button id="subscribe" disabled >Subscribe</button>
         </div>
 
         <div class="col-md-8 col-md-offset-2">
@@ -71,9 +81,13 @@
                             <div class="col-sm-8 col-md-8" ng-show="task.is_completed"><del>{{task.description}}</del></div>
                             <div class="col-sm-8 col-md-8" ng-show="!(task.is_completed)">{{task.description}}</div>
                             <div class="col-sm-2 col-md-2" ng-if="task.time==null"><i class="glyphicon glyphicon-time"></i></div>
-                            <div class="col-sm-2 col-md-2" ng-if="task.time!=null">{{task.time}}</div>
+                            <div class="col-sm-2 col-md-2" ng-show="today" ng-if="task.time!=null">{{task.time}}</div>
+                            <div class="col-sm-2 col-md-3" ng-hide="today" ng-if="task.time!=null">{{(task.due_date | date: dd-mm-yyyy) +" "+ task.time}}</div>
 
-                            <div class="col-sm-2 col-md-2" align="right" ng-click="deleteTask($event, tasks, $index, task.id)">
+                            <div class="col-sm-2 col-md-2" ng-show="today" align="right" ng-click="deleteTask($event, tasks, $index, task.id)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </div>
+                            <div class="col-sm-2 col-md-1" ng-hide="today" align="right" ng-click="deleteTask($event, tasks, $index, task.id)">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </div>
                         </div>

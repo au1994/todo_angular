@@ -12,6 +12,8 @@
 
         <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
+        <script type="text/javascript" src="bower_components/angular-google-plus/dist/angular-google-plus.js"></script>
+
         <script type="text/javascript" src="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
 
         <script type="text/javascript" src="script.js"></script>
@@ -27,7 +29,7 @@
     <body ng-controller="UpdateController">
 
     <div class="container col-md-8 col-md-offset-2">
-        <h2 style="margin-top: 16px" align="middle">Add/Update</h2>
+        <h2 ng-model="add_update" style="margin-top: 16px" align="middle">{{add_update}} task</h2>
 
         <div class="form-group" style="margin-bottom: 16px">
             <label for="description">Description:</label>
@@ -42,7 +44,7 @@
 
                     <label>
                         <toggle ng-model="checked1" ng-change="checkedStatus()"></toggle>
-                        Due Date {{checked1}}
+                        Due Date <span ng-show="due_date_bool" style="color: #ac2925">{{due_date_error}}</span>
                     </label>
 
                 </div>
@@ -78,7 +80,7 @@
             </div>
 
             <div>
-                <button class="btn btn-default" style="float: right;margin: 16px">Cancel</button>
+                <button class="btn btn-default" style="float: right;margin: 16px" ng-click="cancel()">Cancel</button>
                 <button class="btn btn-default" style="float: right;margin: 16px " ng-click="submit()">Submit</button>
             </div>
         </div>

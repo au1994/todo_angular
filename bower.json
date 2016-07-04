@@ -19,6 +19,11 @@
     "bootstrap": "^3.3.6",
     "jquery": "^3.0.0",
     "angular-material": "^1.0.9",
-    "angular-bootstrap-toggle": "^0.1.2"
+    "angular-bootstrap-toggle": "^0.1.2",
+    "angular-cookies": "^1.5.7",
+    "angular-google-plus": "^0.1.3"
+  },
+  "resolutions": {
+    "angular": "^1.5.7"
   }
 }
