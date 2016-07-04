@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+
+        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+
+        <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-cookies.js"></script-->
+
+        <script type="text/javascript" src='bower_components/angular-cookies/angular-cookies.js'></script>
+
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+
+        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script type="text/javascript" src="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
+
+        <script type="text/javascript" src="bower_components/angular-google-plus/dist/angular-google-plus.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css">
+
+
+        <script type="text/javascript" src="script.js"></script>
+
+        <link rel="stylesheet" type="text/css"
+              href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+        <style>
+
+            .vertical-center {
+                min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+                min-height: 100vh; /* These two lines are counted as one :-)       */
+
+                display: flex;
+                align-items: center;
+            }
+
+            .form-box input {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;;
+                background: #fff;
+                transition:0.2s ease-in-out;
+            }
+
+            .password {
+                position: relative;
+            }
+
+            #passwordfield {
+                padding-right: 56px;
+            }
+
+            .password .label {
+                display: none;
+                right: 8px;
+                position: absolute;
+                top: 8px;
+                cursor: pointer;
+                background: #EAEAEA;
+                padding: 6px 7px 6px 6px;
+                color: #7D7D7D;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+
+            }
+
+        </style>
+
+        <script>
+            $(function(){
+                $("#passwordfield").on("keyup",function(){
+                    if($(this).val())
+                        $(".password .label").show();
+                    else
+                        $(".password .label").hide();
+                });
+                $(".password .label").click(function(){
+                    if($(".password .label:contains('SHOW')").length > 0){
+                        $("#passwordfield").attr('type','text');
+                        $(".password .label").html('HIDE');
+                    }else{
+                        $("#passwordfield").attr('type','password');
+                        $(".password .label").html('SHOW');
+                    }
+                });
+            });
+        </script>
+
+    </head>
+    <body ng-controller="LoginController">
+
+        <div class="container container-table">
+            
+            <div class="row vertical-center">
+                <div class="col-md-6 col-md-offset-3 container-table">
+                    <div>
+                        <div class="text-center">
+                            <img class="img-thumbnail img-responsive" src="images/todo-icon.png" style="height: 100px">
+                            <p style="margin: 16px">TODO</p>
+                        </div>
+                        <div>
+                            <span ng-model="error_google_user" style="color: #ac2925">{{error_google_user}}</span>
+                        </div>
+                        <div >
+                            <div class="form-group">
+                                <!--label for="email">Username:</label-->
+                                <input ng-model="username" type="email" class="form-control" id="email" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-box">
+                                    <div class="password">
+                                <!--label for="pwd">Password:</label-->
+                                <input ng-model="password" type="password" id="passwordfield" class="form-control" id="pwd" placeholder="Enter Password">
+                                    <span class="label">SHOW</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox"> Remember me</label>
+                            </div>
+                            <button ng-click="login()" type="submit" class="btn btn-default" style="align-items: center">Login</button>
+                            <button ng-click="googlelogin()" type="submit" class="btn btn-default" style="align-items: center">Google+</button>
+                            <a  class="btn btn-default" style="align-items: center" href="/register.html">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="pwd">Password:</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Remember me</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+        </form>-->
+
+
+    </body>
+</html>

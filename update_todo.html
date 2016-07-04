@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+    <head>
+        <meta charset="UTF-8">
+        <title>Update Todo</title>
+
+        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-cookies.js"></script>
+
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+
+        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script type="text/javascript" src="bower_components/angular-google-plus/dist/angular-google-plus.js"></script>
+
+        <script type="text/javascript" src="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
+
+        <script type="text/javascript" src="script.js"></script>
+
+
+        <link rel="stylesheet" type="text/css"
+              href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+        <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css">
+
+
+    </head>
+    <body ng-controller="UpdateController">
+
+    <div class="container col-md-8 col-md-offset-2">
+        <h2 ng-model="add_update" style="margin-top: 16px" align="middle">{{add_update}} task</h2>
+
+        <div class="form-group" style="margin-bottom: 16px">
+            <label for="description">Description:</label>
+            <textarea class="form-control" rows="5"  id="description" ng-model = description></textarea>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row"  >
+
+                <div class="col-md-4" >
+
+                    <label>
+                        <toggle ng-model="checked1" ng-change="checkedStatus()"></toggle>
+                        Due Date <span ng-show="due_date_bool" style="color: #ac2925">{{due_date_error}}</span>
+                    </label>
+
+                </div>
+
+                <div class="col-md-8" style="float: right">
+                    <label style="float: right">
+                        <input type="date" ng-disabled = "!checked1" ng-model = date><span class="glyphicon glyphicon-calendar" style="margin-left: 2px"></span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="row" >
+
+                <div class="col-md-4">
+
+                    <label >
+                        <toggle ng-model="checked2" ng-change="checkedStatus()"></toggle>
+                        Due Time {{checked3}}
+                    </label>
+
+                </div>
+
+                <div class="col-md-8" >
+
+                    <label style="float: right">
+                        <input type="time" ng-disabled = "!(checked2)" ng-model = time placeholder="HH:mm:ss"><span class="glyphicon glyphicon-time " style="margin-left: 2px"></span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div>
+                <button class="btn btn-default" style="float: right;margin: 16px" ng-click="cancel()">Cancel</button>
+                <button class="btn btn-default" style="float: right;margin: 16px " ng-click="submit()">Submit</button>
+            </div>
+        </div>
+
+    </div>
+
+    </body>
+</html>
+
